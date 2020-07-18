@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script> 
+var a = ["a", 1];
+
+var b = a.concat();
+var c = a.slice();
+
+/**
+*concat() 连接数组 不会改变原数组，只会返回一个副本
+*slice (start,end) 参数均可选 负数为末尾返回数第几个数字 ，若无则从头或者从未  不会改变原数组，只会返回一个副本
+*splice (index, howMany, item...) index 必选 第几个  ， howMany 可选 删除数 ， item 加到数组的元素（splice(2,0,"1")） 改变原数组，返回删除的元素，如果是0的话，返回[]
+*
+*
+*/
+
+function deepCopy (obj){
+    if(typeof(obj)!=='object'){
+        return
+    }
+    var item 
+    var newObj = obj instanceof Array ? []:{}
+    for( item in obj){
+        if(obj.hasOwnProperty(item)){
+            newObj[item] = typeof( obj [item] ) === 'object' ? deepCopy(obj[item]) : obj[item] 
+        }
+    }
+    return obj
+}
+
+var new_arr = JSON.parse(JSON.stringify(arr));
+</script>
+</html>

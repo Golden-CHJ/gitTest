@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+     var class2type = {}
+
+// 映射，对应object.prototype.toString()输出格式
+
+"Underfined Null Number String Boolean Array Data RegExp Object Error".split(" ").map(function(item, index){
+    class2type["[object" + item +"]"] = item
+})
+
+ // // 相当于 Object.prototype.toString
+var toString = class2type.toString;
+
+ // // 相当于 Object.prototype.hasOwnProperty
+var hasOwn = class2type.hasOwnProperty;
+
+function isPlainObject (obj){
+
+    var Ctor, proto
+
+        //排除基本类型和宿主（[object window]）
+    if(!obj||toString.call(obj)!== "[object object]"){
+        return false
+    }
+
+        // getPrototypeOf 获取原型
+        // 这里筛选{} 和object.create(null)
+
+    if(!Object.getPrototypeOf(obj)){
+        return true
+    }
+     
+     // 
+
+    proto =  Object.getPrototypeOf(obj)
+    
+    // || 判断 真 || 非0值 =非0值 
+    Ctor = hasOwn.call(proto, "construtor") && proto.constructor
+
+    return typeof Ctor === "function" &&hasOwn.toString.call(Ctor) === hasOwn.toString.call(Object)
+
+
+
+        function isEmptyObject( obj ) {
+
+                var name;
+
+                for ( name in obj ) {
+                    return false;
+                }
+
+                return true;
+        }   
+}
+function isWindow( obj ) {
+    return obj != null && obj === obj.window;
+}
+function isDom(onh) {
+    return !! (onh&&onh.nodetype===1)
+}
+</script>
+</html>

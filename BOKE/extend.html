@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+     * 实现extend
+     * jQuery.extend( [deep], target, object1 [, objectN ] )
+     */
+
+    function extend() {
+      // 这里没用参数，动态参数使用argument
+      var deep = false; // deep可选参数
+
+      var src, copy;
+
+      var target = arguments[0] || {}; // 可选参数的写法
+
+      var i = 1; // 可变参数 ， 计算length
+
+      var length = arguments.length;
+
+      if (typeof target == "boolean") {
+        deep = target;
+        target = arguments[i] || {};
+        i++;
+      }
+
+      for (; i < arguments.length; i++) {
+        // 当前对象
+        var option = arguments[i];
+
+        if (option != null) {
+          // 这里判断是否参数为[1 , , 2]
+          for (key in option) {
+            src = target[key];
+            copy = option[key];
+            if (deep && copy && typeof option == "object") {
+              // 还是要判断是否为null
+              extend(deep, src, copy);
+            } else if (copy != undefined) {
+              target[key] = copy;
+            }
+          }
+        }
+      }
+
+      return target;
+    }
+  </script>
+</html>

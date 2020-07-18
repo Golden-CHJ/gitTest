@@ -1,0 +1,38 @@
+                        }
+                        if(isDir){
+                            fileDisplay(filedir);//递归，如果是文件夹，就继续遍历该文件夹下面的文件
+                        }
+                    }
+                })
+            });
+        }
+    });
+}
+
+
+
+如果碰到有中文不能解析的html，这样写
+var cheerio = require('cheerio');
+var iconv = require('iconv-lite');
+var myHtml = fs.readFileSync("index.html");
+var myHtml2 = iconv.decode(myHtml, 'gbk');
+console.log(myHtml2);
+ 
+复制代码
+ 
+
+标签: node
+好文要顶 关注我 收藏该文  
+正正果实
+关注 - 33
+粉丝 - 7
++加关注
+00
+« 上一篇： 使用Vue-cli搭建多页面应用时对项目结构和配置的调整
+» 下一篇： element-ui表格行合并
+posted on 2018-01-17 22:29  正正果实  阅读(15687)  评论(0)  编辑  收藏
+刷新评论刷新页面返回顶部
+注册用户登录后才能发表评论，请 登录 或 注册， 访问 网站首页。
+【推荐】了解你才能更懂你，博客园首发问卷调查，助力社区新升级
+【推荐】超50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库
+【推荐】如何打造一支战斗力爆棚的技术团队？

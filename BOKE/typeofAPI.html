@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    
+</body>
+<script>
+    var class2type = {}
+
+    // 映射，对应object.prototype.toString()输出格式
+
+    "Underfined Null Number String Boolean Array Data RegExp Object Error".split(" ").map(function(item, index){
+        class2type["[object" + item +"]"] = item
+    })
+  
+  /**
+  *NOTE1: typeof 是运算符
+  *NOTE2:  ||  比三元运算符  ？： 优先度高
+  *NOTE3 : || 满足第一个条件直接判断正确 不会管下一个条件
+  *1.obj还是fuc？ 2. obj是啥类型的，不然就是普通的obj 3.只是个基本类型
+  */
+
+    function type (obj){
+
+        /**
+        *NOTE4:IE6下null 和underfined会被识别成 [object object]
+        *NOTE5 : underfined == null
+        */
+        if(obj == null){
+            return obj +"";
+        }
+     
+        return typeof obj === "object" || typeof obj === "function" ?
+        class2type[Object.prototype.toString.call(obj) ] || "object" :
+        typeof obj;
+    }
+
+
+</script>
+</html>
